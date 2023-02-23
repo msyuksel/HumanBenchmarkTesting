@@ -23,11 +23,18 @@ public class AbstractComponent {
 
 	}
 
-	@FindBy(css = "[routerlink*='cart']")
-	WebElement cartHeader;
+	@FindBy(css = "div[class='css-o34a3t e19owgy75'] a[href='/']")
+	WebElement HumanBenchMarkButton;
 
-	@FindBy(css = "[routerlink*='myorders']")
-	WebElement orderHeader;
+	@FindBy(css = "div[class='css-o34a3t e19owgy75'] a[href='/dashboard']")
+	WebElement DashboardButton;
+
+	@FindBy(css = "div[class='css-o34a3t e19owgy75'] a[href='/signup']")
+	WebElement SignUpButton;
+
+	@FindBy(css = "div[class='css-o34a3t e19owgy75'] a[href='/login']")
+	WebElement LoginButton;
+
 
 	public void waitForElementToAppear(By findBy) {
 

@@ -31,7 +31,7 @@ public class TypingTestPage {
 
 	// This method will take us directly to the landing page
 	public void goTo() {
-		driver.get("https://humanbenchmark.com/");
+		driver.get("https://humanbenchmark.com/tests/typing");
 	}
 	public void selectTextBox() {
 		BoxToTypeIn.click();

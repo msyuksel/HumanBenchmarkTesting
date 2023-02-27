@@ -63,6 +63,7 @@ public class LandingPage {
 
 	@FindBy(css = "div[class = \"css-w0151b e19owgy76\"] p:nth-child(4)")
 	WebElement licensingLocator;
+	//Useless change
 
 	// This method will take us directly to the landing page
 	public void goTo() {

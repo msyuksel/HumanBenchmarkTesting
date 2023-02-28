@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LandingPage {
 	// This class has page objects/elements/methods and links related to the main
 	// page of the website
@@ -18,15 +21,6 @@ public class LandingPage {
 		PageFactory.initElements(driver, this);
 
 	}
-
-	@FindBy(css = "div[class = \"css-1qvtbrk e19owgy78\"]:nth-child(2) h1 ")
-	WebElement landingPageConifrmation1;
-
-	@FindBy(css = "div[class = \"css-1qvtbrk e19owgy78\"]:nth-child(2) h2 ")
-	WebElement landingPageConifrmation2;
-
-	@FindBy(xpath = "//a[contains(text(),'Get Started')]")
-	WebElement getStarted;
 
 	@FindBy(css = "div[class = \"css-1ur49oz e19owgy70\"]:nth-child(1) a[class = \"css-uaat4j e19owgy72\"]:nth-child(1)")
 	WebElement reactionTimeLinkBtn;
@@ -63,7 +57,6 @@ public class LandingPage {
 
 	@FindBy(css = "div[class = \"css-w0151b e19owgy76\"] p:nth-child(4)")
 	WebElement licensingLocator;
-	//Useless change2
 
 	// This method will take us directly to the landing page
 	public void goTo() {

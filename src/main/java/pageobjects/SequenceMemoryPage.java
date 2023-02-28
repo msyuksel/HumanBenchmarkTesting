@@ -4,10 +4,15 @@ import abstractComponents.AbstractComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,45 +49,71 @@ public class SequenceMemoryPage extends AbstractComponent {
 
     public int scoreIs;
 
-    public List<Integer> getClickIndex() throws InterruptedException {
+    public List<Integer> indexesOfActiveSquares() throws InterruptedException {
         List<Integer> btnClickIndexs = new ArrayList<Integer>();
         for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
-            for (WebElement x : squareBtns) {
-                waitForWebElementToAppear(activeSquareBtn);
-                if (x.getAttribute("class").contains("active")) {
-                    btnClickIndexs.add(squareBtns.indexOf(x));
-                }
-            }
+            checkIfSquareIsActive(btnClickIndexs);
             Thread.sleep(400);
         }
-            return btnClickIndexs;
+        return btnClickIndexs;
     }
 
-
-    public void clickBoxes() throws InterruptedException {
-        for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
-            Iterator<Integer> it = getClickIndex().iterator();
-            while (it.hasNext()) {
-                Thread.sleep(400);
-                squareBtns.get(it.next()).click();
+    public void checkIfSquareIsActive(List<Integer> btnClickIndexs) throws InterruptedException {
+        for (WebElement x : squareBtns) {
+            waitForWebElementToAppear(activeSquareBtn);
+            if (x.getAttribute("class").equals("square active")){
+                while(!(x.getAttribute("class").equals("square active"))){
+                }
+                btnClickIndexs.add(squareBtns.indexOf(x));
             }
         }
-//        System.out.println("The size of getClickIndex is: "+getClickIndex().size());
-//        System.out.println("Score is "+playerScore.getText());
+    }
+
+    private void clickBoxes() throws InterruptedException {
+
+//        Iterator<Integer> it = indexesOfActiveSquares().iterator();
+//        while (it.hasNext()) {
+//            //Waiting for how fast to click
+//            //Thread.sleep(400);
+//            squareBtns.get(it.next()).click();
+//        }
+        List<Integer> btnClickIndexs = indexesOfActiveSquares();
+        for(int i = 0; i < btnClickIndexs.size(); i++){
+            Thread.sleep(200);
+            squareBtns.get(btnClickIndexs.get(i)).click();
+
+        }
+        Thread.sleep(500);
+        System.out.println("Click List Size: "+btnClickIndexs.size());
+    }
+
+    public void testRunner() throws InterruptedException {
+        waitForWebElementToAppear(levelNum);
+        for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
+            clickBoxes();
+        }
 
     }
+
+
 
     public void goTo() {
         driver.get("https://humanbenchmark.com/tests/sequence");
     }
 
     public static void main(String[] args) throws InterruptedException {
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless");
         WebDriver driver = new ChromeDriver();
+
         SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
         sequenceMemoryPage.goTo();
         sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
-        sequenceMemoryPage.clickBoxes();
-        System.out.println("The size of getClickIndex is: "+sequenceMemoryPage.getClickIndex().size());
-        System.out.println("Score is "+sequenceMemoryPage.playerScore.getText());
+        for(int i = 0; i <100; i++){
+            sequenceMemoryPage.testRunner();
+        }
+//        System.out.println("The size of getClickIndex is: "+sequenceMemoryPage.indexesOfActiveSquares().size());
+//        System.out.println("Score is "+sequenceMemoryPage.playerScore.getText());
+        driver.close();
     }
 }

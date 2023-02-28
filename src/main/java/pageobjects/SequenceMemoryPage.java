@@ -1,17 +1,13 @@
 package pageobjects;
 
 import abstractComponents.AbstractComponent;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,28 +36,19 @@ public class SequenceMemoryPage extends AbstractComponent {
     @FindBy(css = "button[class='css-qm6rs9 e19owgy710']")
     WebElement saveScoreBtn;
 
-    @FindAll({@FindBy(css = "div[class = 'square-row']")})
-    public List<WebElement> squareRows;
-
-    @FindBy(css = "div[class='square']")
-    WebElement individualSquareBtn;
-
-    @FindAll({@FindBy(css = "div[class='square']")})
-    public List<WebElement> squareBtns;
-
     @FindAll({@FindBy(css = "div[class = 'square-row'] div")})
-    public List<WebElement> squareBtns1;
+    public List<WebElement> squareBtns;
 
 
     public List<Integer> getClickIndex() throws InterruptedException {
         List<Integer> btnClickIndexs = new ArrayList<Integer>();
         for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
-            for (WebElement x : squareBtns1) {
+            for (WebElement x : squareBtns) {
                 waitForWebElementToAppear(activeSquareBtn);
                 if (x.getAttribute("class").contains("active")) {
-                    btnClickIndexs.add(squareBtns1.indexOf(x));
+                    btnClickIndexs.add(squareBtns.indexOf(x));
 
-                    System.out.println("adding into btnclick "+squareBtns1.indexOf(x));
+                    System.out.println("adding into btnclick "+ squareBtns.indexOf(x));
                     System.out.println("indexlist size "+btnClickIndexs.size());
                 }
             }
@@ -79,22 +66,22 @@ public class SequenceMemoryPage extends AbstractComponent {
                 Integer x = it.next();
                 Thread.sleep(400);
 
-                squareBtns1.get(x).click();
+                squareBtns.get(x).click();
             }
 
         }
     }
 
-    public void goTo() {
-        driver.get("https://humanbenchmark.com/tests/sequence");
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
-        sequenceMemoryPage.goTo();
-        sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
-        sequenceMemoryPage.clickBoxes();
-
-    }
+//    public void goTo() {
+//        driver.get("https://humanbenchmark.com/tests/sequence");
+//    }
+//
+//    public static void main(String[] args) throws InterruptedException {
+//        WebDriver driver = new ChromeDriver();
+//        SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
+//        sequenceMemoryPage.goTo();
+//        sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
+//        sequenceMemoryPage.clickBoxes();
+//
+//    }
 }

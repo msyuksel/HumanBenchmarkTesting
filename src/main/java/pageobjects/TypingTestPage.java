@@ -3,6 +3,7 @@ package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.PageFactory;
@@ -39,20 +40,27 @@ public class TypingTestPage {
 	}
 	public void sendCorrectKeys() {
 		//converting the list of webelements into a list of characters
-		List<Character> CorrectKeys = new ArrayList<Character>();
+		String str = "";
+
 		for(WebElement c : Keys){
-			char x=c.getText().charAt(0);
-			CorrectKeys.add(x);
+			System.out.println(c.getText());
+			char x= c.getText().isEmpty() ? ' ' : c.getText().charAt(0);
+			str += 'a';
 		}
 		//converting the list of characters into a charsequence
-		CharSequence[] cs = CorrectKeys.toArray(new CharSequence[CorrectKeys.size()]);
 
 		//selecting the textbox and sending our charsequence of correct keys
 		selectTextBox();
-		BoxToTypeIn.sendKeys(cs);
+		BoxToTypeIn.sendKeys(str);
 	}
 	public void SaveScore() {
 		driver.findElement(By.cssSelector("button[class='css-qm6rs9 e19owgy710']")).click();
+	}
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		TypingTestPage typingTestPage = new TypingTestPage(driver);
+		typingTestPage.goTo();
+		typingTestPage.sendCorrectKeys();
 	}
 
 

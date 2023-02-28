@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,6 +50,9 @@ public class TypingTestPage {
 		//selecting the textbox and sending our charsequence of correct keys
 		selectTextBox();
 		BoxToTypeIn.sendKeys(cs);
+	}
+	public void SaveScore() {
+		driver.findElement(By.cssSelector("button[class='css-qm6rs9 e19owgy710']")).click();
 	}
 
 

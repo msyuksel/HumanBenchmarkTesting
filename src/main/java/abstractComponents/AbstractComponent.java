@@ -60,7 +60,7 @@ public class AbstractComponent {
 	
 
 	public void waitForElementToDisappear(WebElement findBy) throws InterruptedException {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
 		wait.until(ExpectedConditions.invisibilityOf(findBy));
 
 	}

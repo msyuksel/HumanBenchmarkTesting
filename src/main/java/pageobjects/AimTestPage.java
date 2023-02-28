@@ -42,7 +42,7 @@ public class AimTestPage extends AbstractComponent {
     }
     public void ClickTargets() {
         for(int i = 0; i <30; i++){
-            waitForWebElementToAppear(driver.findElement(By.cssSelector("div[class='css-z6vxiy e6yfngs3']:nth-child(4)")));
+
             WebElement target = driver.findElement(By.cssSelector("div[class='css-z6vxiy e6yfngs3']:nth-child(4)"));
             Actions actions = new Actions(driver);
             actions.moveToElement(target).click().build().perform();

@@ -43,7 +43,6 @@ public class TypingTestPage {
 		String str = "";
 
 		for(WebElement c : Keys){
-			System.out.println(c.getText());
 			char x= c.getText().isEmpty() ? ' ' : c.getText().charAt(0);
 			str += 'a';
 		}

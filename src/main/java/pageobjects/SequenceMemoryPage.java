@@ -39,6 +39,10 @@ public class SequenceMemoryPage extends AbstractComponent {
     @FindAll({@FindBy(css = "div[class = 'square-row'] div")})
     public List<WebElement> squareBtns;
 
+    @FindBy(css = "div.anim-slide-fade-in div.css-1qvtbrk.e19owgy78:nth-child(2) > h1.css-0")
+    WebElement playerScore;
+
+    public int scoreIs;
 
     public List<Integer> getClickIndex() throws InterruptedException {
         List<Integer> btnClickIndexs = new ArrayList<Integer>();
@@ -47,41 +51,38 @@ public class SequenceMemoryPage extends AbstractComponent {
                 waitForWebElementToAppear(activeSquareBtn);
                 if (x.getAttribute("class").contains("active")) {
                     btnClickIndexs.add(squareBtns.indexOf(x));
-
-                    System.out.println("adding into btnclick "+ squareBtns.indexOf(x));
-                    System.out.println("indexlist size "+btnClickIndexs.size());
                 }
             }
             Thread.sleep(400);
         }
-
             return btnClickIndexs;
-
     }
+
 
     public void clickBoxes() throws InterruptedException {
         for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
             Iterator<Integer> it = getClickIndex().iterator();
             while (it.hasNext()) {
-                Integer x = it.next();
                 Thread.sleep(400);
-
-                squareBtns.get(x).click();
+                squareBtns.get(it.next()).click();
             }
-
         }
+//        System.out.println("The size of getClickIndex is: "+getClickIndex().size());
+//        System.out.println("Score is "+playerScore.getText());
+
     }
 
-//    public void goTo() {
-//        driver.get("https://humanbenchmark.com/tests/sequence");
-//    }
-//
-//    public static void main(String[] args) throws InterruptedException {
-//        WebDriver driver = new ChromeDriver();
-//        SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
-//        sequenceMemoryPage.goTo();
-//        sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
-//        sequenceMemoryPage.clickBoxes();
-//
-//    }
+    public void goTo() {
+        driver.get("https://humanbenchmark.com/tests/sequence");
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+        SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
+        sequenceMemoryPage.goTo();
+        sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
+        sequenceMemoryPage.clickBoxes();
+        System.out.println("The size of getClickIndex is: "+sequenceMemoryPage.getClickIndex().size());
+        System.out.println("Score is "+sequenceMemoryPage.playerScore.getText());
+    }
 }

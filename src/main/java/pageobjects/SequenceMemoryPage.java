@@ -109,7 +109,7 @@ public class SequenceMemoryPage extends AbstractComponent {
         SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
         sequenceMemoryPage.goTo();
         sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
-        for(int i = 0; i <100; i++){
+        for(int i = 0; i <10; i++){
             sequenceMemoryPage.testRunner();
         }
 //        System.out.println("The size of getClickIndex is: "+sequenceMemoryPage.indexesOfActiveSquares().size());

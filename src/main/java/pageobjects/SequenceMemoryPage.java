@@ -49,16 +49,7 @@ public class SequenceMemoryPage extends AbstractComponent {
 
     public int scoreIs;
 
-    public List<Integer> indexesOfActiveSquares() throws InterruptedException {
-        List<Integer> btnClickIndexs = new ArrayList<Integer>();
-        for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
-            checkIfSquareIsActive(btnClickIndexs);
-            Thread.sleep(400);
-        }
-        return btnClickIndexs;
-    }
-
-    public void checkIfSquareIsActive(List<Integer> btnClickIndexs) throws InterruptedException {
+    private void checkIfSquareIsActive(List<Integer> btnClickIndexs) throws InterruptedException {
         for (WebElement x : squareBtns) {
             waitForWebElementToAppear(activeSquareBtn);
             if (x.getAttribute("class").equals("square active")){
@@ -69,33 +60,26 @@ public class SequenceMemoryPage extends AbstractComponent {
         }
     }
 
-    private void clickBoxes() throws InterruptedException {
-
-//        Iterator<Integer> it = indexesOfActiveSquares().iterator();
-//        while (it.hasNext()) {
-//            //Waiting for how fast to click
-//            //Thread.sleep(400);
-//            squareBtns.get(it.next()).click();
-//        }
-        List<Integer> btnClickIndexs = indexesOfActiveSquares();
-        for(int i = 0; i < btnClickIndexs.size(); i++){
-            Thread.sleep(200);
-            squareBtns.get(btnClickIndexs.get(i)).click();
-
+    private List<Integer> indexesOfActiveSquares() throws InterruptedException {
+        List<Integer> btnClickIndexs = new ArrayList<Integer>();
+        for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
+            checkIfSquareIsActive(btnClickIndexs);
+            Thread.sleep(400);
         }
-        Thread.sleep(500);
-        System.out.println("Click List Size: "+btnClickIndexs.size());
+        return btnClickIndexs;
+    }
+
+    private void clickBoxes(List<Integer> btnClickIndexs, int i) throws InterruptedException {
+        squareBtns.get(btnClickIndexs.get(i)).click();
     }
 
     public void testRunner() throws InterruptedException {
-        waitForWebElementToAppear(levelNum);
-        for(int i = 0; i<Integer.valueOf(levelNum.getText()); i++) {
-            clickBoxes();
+        List<Integer> btnClickIndexs = indexesOfActiveSquares();
+        for(int i = 0; i<btnClickIndexs.size(); i++) {
+            clickBoxes(btnClickIndexs , i);
         }
-
+        System.out.println("Click List Size: "+btnClickIndexs.size());
     }
-
-
 
     public void goTo() {
         driver.get("https://humanbenchmark.com/tests/sequence");
@@ -109,7 +93,7 @@ public class SequenceMemoryPage extends AbstractComponent {
         SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
         sequenceMemoryPage.goTo();
         sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
-        for(int i = 0; i <10; i++){
+        for(int i = 0; i <30; i++){
             sequenceMemoryPage.testRunner();
         }
 //        System.out.println("The size of getClickIndex is: "+sequenceMemoryPage.indexesOfActiveSquares().size());

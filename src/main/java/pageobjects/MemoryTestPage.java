@@ -38,18 +38,19 @@ public class MemoryTestPage extends AbstractComponent {
         StartTestBtn.click();
 //        waitForElementToAppear(new By.ByCssSelector("div[class='css-hvbk5q eut2yre0'] div[class*='active']"));
         int i = 0;
-        while(i < 20){
+        while(i < 150){
         List<Integer> ActiveTilePositions = GetListWithActiveTileLocations();
-        System.out.println(ActiveTilePositions.get(0));
+        System.out.println(ActiveTilePositions);
 
 //        waitForElementToAppear(new By.ByCssSelector("div[class=\"css-hvbk5q eut2yre0\"] div[class]"));
         List<WebElement> Tiles = GetGridShape();
-        System.out.println(Tiles.get(0));
+
 
         Thread.sleep(2000);
         for (Integer ActiveTilePosition : ActiveTilePositions){
             System.out.println(Tiles.get(ActiveTilePosition));
             Tiles.get(ActiveTilePosition).click();
+
         }
         i++;
     }

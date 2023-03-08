@@ -61,5 +61,13 @@ public class LandingPage {
 	// This method will take us directly to the landing page
 	public void goTo() {
 		driver.get("https://humanbenchmark.com/");
+
 	}
+	public ChimpTestPage goToChimpTest() {
+
+		chimpTestLinkBtn.click();
+		return new ChimpTestPage(driver);
+
+	}
+
 }

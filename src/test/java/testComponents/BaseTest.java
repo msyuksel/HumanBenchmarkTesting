@@ -41,7 +41,7 @@ public class BaseTest {
 
 		String browserName = System.getProperty("browser") != null ? System.getProperty("browser")
 				: prop.getProperty("browser");
-		// prop.getProperty("browser");
+//		 prop.getProperty("browser");
 
 		if (browserName.contains("chrome")) {
 			ChromeOptions options = new ChromeOptions();
@@ -108,8 +108,8 @@ public class BaseTest {
 	public LandingPage launchApplication() throws IOException {
 
 		driver = initializeDriver();
-//		landingPage = new LandingPage(driver);
-//		landingPage.goTo();
+		landingPage = new LandingPage(driver);
+		landingPage.goTo();
 		return landingPage;
 
 	}

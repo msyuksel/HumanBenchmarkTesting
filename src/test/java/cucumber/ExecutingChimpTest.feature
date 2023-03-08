@@ -18,20 +18,13 @@
 #Sample Feature Definition Template
 
 @tag
-Feature: Purchase the order from Ecommerce Website
-  I want to use this template for my feature file
+Feature: Submitting correct answers for Chimp test.
 
-	Background:
-	Given I landed on Ecommerce Page
+@Regression
+  Scenario: ExecutingChimpTest.feature
+    Given I landed on ChimpTestPage
+    When I click the start button
+    And I click every correct answer for each level
+    Then  Test completed message is displayed
 
-  @Regression
-  Scenario Outline: Positive Test of Submitting the order
-  
-    Given Log ged in with username <name> and password <password>
-    When I add product <productName> to Cart
-    And Checkout <productName> and submit the order
-    Then "THANKYOU FOR THE ORDER." message is displayed on ConfirmationPage
 
-    Examples: 
-      | name  				  |  password	 |	productName |
-      | email@gmail.com |  Password1 | A product    | 

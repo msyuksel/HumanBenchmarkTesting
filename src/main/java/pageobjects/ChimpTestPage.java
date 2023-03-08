@@ -28,18 +28,23 @@ import org.openqa.selenium.support.PageFactory;
         @FindBy(css = "div button[class='css-de05nr e19owgy710']")
         WebElement StartTestBtn;
 
-
-        public void DoChimpTest() {
+        @FindBy(css = "button[class=\"css-qm6rs9 e19owgy710\"]")
+        WebElement SaveScoreBtn;
+        @FindBy(css = "div button[class=\"css-de05nr e19owgy710\"]")
+        WebElement ContinueBtn;
+        public void startChimpTest(){
             StartTestBtn.click();
-            int i = 5;
-            while(i < 100) {
-                clickTiles(i);
-                driver.findElement(By.cssSelector("div button[class=\"css-de05nr e19owgy710\"]")).click();
-                i++;
+        }
+        public void doChimpTest() {
+            int tilesToClick = 5;
+            while(tilesToClick<46) {
+                clickTiles(tilesToClick);
+                ContinueBtn.click();
+                tilesToClick++;
             }
         }
-        public void clickTiles(int x){
-            for(int i = 1; i<x ;i++){
+        public void clickTiles(int tiles){
+            for(int i = 1; i<tiles ;i++){
                 findCurrentTile("" + i).click();
             }
         }
@@ -55,15 +60,15 @@ import org.openqa.selenium.support.PageFactory;
 
             driver.findElement(By.cssSelector("button[class='css-qm6rs9 e19owgy710']")).click();
         }
-        public void goTo() {
+        public void launchChimpTestPage() {
             driver.get("https://humanbenchmark.com/tests/chimp");
         }
 
-        public static void main(String[] args) throws InterruptedException {
-            WebDriver driver = new ChromeDriver();
-            ChimpTestPage chimpTestPage = new ChimpTestPage(driver);
-            chimpTestPage.goTo();
-            chimpTestPage.DoChimpTest();
-        }
+//        public static void main(String[] args) throws InterruptedException {
+//            WebDriver driver = new ChromeDriver();
+//            ChimpTestPage chimpTestPage = new ChimpTestPage(driver);
+//            chimpTestPage.launchChimpTestPage();
+//            chimpTestPage.doChimpTest();
+//        }
     }
 

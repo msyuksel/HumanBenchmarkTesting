@@ -35,10 +35,14 @@ import org.openqa.selenium.support.PageFactory;
         public void startChimpTest(){
             StartTestBtn.click();
         }
-        public void doChimpTest() {
+        public void doChimpTest(){
             int tilesToClick = 5;
-            while(tilesToClick<46) {
+            int maxTiles = 41;
+            while(true){
                 clickTiles(tilesToClick);
+                if(tilesToClick==maxTiles){
+                    break;
+                }
                 ContinueBtn.click();
                 tilesToClick++;
             }
@@ -57,8 +61,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
         public void SaveScore() {
-
-            driver.findElement(By.cssSelector("button[class='css-qm6rs9 e19owgy710']")).click();
+            SaveScoreBtn.click();
         }
         public void launchChimpTestPage() {
             driver.get("https://humanbenchmark.com/tests/chimp");

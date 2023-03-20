@@ -29,19 +29,20 @@ public class ChimpTestDefinitions extends BaseTest {
 	public void i_click_the_start_button() {
 		// Write code here that turns the phrase above into concrete actions
 		chimpTestPage.startChimpTest();
+
 	}
 	@When("I click every correct answer for each level")
-	public void i_click_every_correct_answer_for_each_level() {
+	public void i_click_every_correct_answer_for_each_level(){
 		// Write code here that turns the phrase above into concrete actions
 		chimpTestPage.doChimpTest();
 	}
 	@Then("Test completed message is displayed")
 	public void test_completed_message_is_displayed() {
 		// Write code here that turns the phrase above into concrete actions
-		System.out.println("Trust Me Bro");
+		chimpTestPage.SaveScore();
 	}
 //	@Given("I landed on ChimpTestPage")
-//	public void iLandedOnChimpTestPage() throws IOException {
+//	public void iLandedOnChimpTestPage() throws IOException {sssssssssssssssssssssssss   a  AWywad AAAAAAAAAAAAAAAAAAAAAAAAAAAwa awaaaaaaaaaaaaaaasda
 
 //	}
 //

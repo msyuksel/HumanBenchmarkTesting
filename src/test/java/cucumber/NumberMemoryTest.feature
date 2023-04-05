@@ -18,13 +18,13 @@
 #Sample Feature Definition Template
 
 @tag
-Feature: Submitting correct answers for Chimp test.
+Feature: Submitting correct answers for Number Memory test.
 
 @Regression
-  Scenario: ExecutingChimpTest.feature
-    Given I landed on ChimpTestPage
-    When I click the start button
-    And I click every correct answer for each level
-    Then  Test completed message is displayed
+  Scenario: NumberMemoryTest.feature
+    Given I landed on NumberMemoryTestPage
+    When I click the start button on NumberMemoryTestPage
+    And I keep submitting the numbers as they are displayed to me
+    Then  Test completed message is displayed on NumberMemoryTestPage
 
 

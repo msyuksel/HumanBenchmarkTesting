@@ -69,5 +69,10 @@ public class LandingPage {
 		return new ChimpTestPage(driver);
 
 	}
+	public NumberMemoryTestPage goToNumberMemoryTestPage() {
 
+		numberMemoryLinkBtn.click();
+		return new NumberMemoryTestPage(driver);
+
+	}
 }

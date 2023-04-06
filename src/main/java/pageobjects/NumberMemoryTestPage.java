@@ -35,21 +35,17 @@ public class NumberMemoryTestPage extends AbstractComponent {
     WebElement TextBox;
 
     public void correctlyAnswerLevels() throws InterruptedException {
-        Boolean TheresAnotherElement = true;
-        while(TheresAnotherElement){
-            String number = CorrectNumber.getText();
-            Thread.sleep(3010);
-            typeInNumber(number);
-            TheresAnotherElement = CorrectNumber.isDisplayed();
+        Thread.sleep(1000);
+//        WebElement CorrectNumber1 = driver.findElement(By.cssSelector("div[class=\"big-number\"]"));
+//        System.out.println(CorrectNumber1.getAttribute("textContent"));
+//        This test is currently failing because the number is not being read correctly from the web element CorrectNumber
+        String number = CorrectNumber.getAttribute("innerHTML");
+        typeInNumber(number);
         }
-        SaveScore();
 
-    }
     public void typeInNumber(String num) throws InterruptedException {
-
-        TextBox.sendKeys();
         Actions goNext = new Actions(driver);
-        goNext.sendKeys(TextBox,CorrectNumber.getText());
+        goNext.sendKeys(TextBox, num);
         goNext.sendKeys(Keys.ENTER);
         goNext.sendKeys(Keys.ENTER);
         goNext.perform();

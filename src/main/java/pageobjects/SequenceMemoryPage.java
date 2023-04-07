@@ -95,7 +95,7 @@ public class SequenceMemoryPage extends AbstractComponent {
         for(int i = 0; i <100; i++){
             sequenceMemoryPage.testRunner();
         }
-//        System.out.println("The size of getClickIndex is: "+sequenceMemoryPage.indexesOfActiveSquares().size());
+//        System.out.println("The size of getClickIndex is: " + sequenceMemoryPage.indexesOfActiveSquares().size());
 //        System.out.println("Score is "+sequenceMemoryPage.playerScore.getText());
         driver.close();
     }

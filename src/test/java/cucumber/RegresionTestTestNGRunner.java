@@ -10,6 +10,6 @@ import io.cucumber.testng.CucumberOptions;
 		"html:target/cucumber.html" )
 
 
-public class ChimpTestTestNGRunner extends AbstractTestNGCucumberTests {
+public class RegresionTestTestNGRunner extends AbstractTestNGCucumberTests {
 
 }

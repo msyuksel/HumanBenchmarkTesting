@@ -9,7 +9,7 @@
 
     <test name="Submit Order Test">
         <classes>
-            <class name="cucumber.ChimpTestTestNGRunner"/>
+            <class name="cucumber.RegresionTestTestNGRunner"/>
         </classes>
     </test> <!-- Test -->
 

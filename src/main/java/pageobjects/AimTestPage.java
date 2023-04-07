@@ -20,7 +20,8 @@ public class AimTestPage extends AbstractComponent {
     WebDriver driver;
 
     public AimTestPage(WebDriver driver) {
-         super(driver);
+        super(driver);
+
         // initialization
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -32,13 +33,15 @@ public class AimTestPage extends AbstractComponent {
     @FindBy(css = "div[class=\"css-ad1j3y e6yfngs2\"]")
     WebElement StartTestBtn;
 
-
+public void startTest(){
+    waitForWebElementToBeClickable(StartTestBtn);
+    Actions actions = new Actions(driver);
+    actions.moveToElement(StartTestBtn).click().build().perform();
+}
     public void DoAimTest() {
-        waitForWebElementToBeClickable(StartTestBtn);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(StartTestBtn).click().build().perform();
+
         ClickTargets();
-        SaveScore();
+
     }
     public void ClickTargets() {
         for(int i = 0; i <30; i++){
@@ -60,10 +63,5 @@ public class AimTestPage extends AbstractComponent {
         driver.get("https://humanbenchmark.com/tests/aim");
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        AimTestPage aimTestPage = new AimTestPage(driver);
-        aimTestPage.goTo();
-        aimTestPage.DoAimTest();
-    }
+
 }

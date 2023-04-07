@@ -34,8 +34,12 @@ public class MemoryTestPage extends AbstractComponent {
     WebElement StartTestBtn;
 
 // get tiles   div[class="css-hvbk5q eut2yre0"] div[class]
-    public void DoMemoryTest() throws InterruptedException {
+    public void startTest() {
         StartTestBtn.click();
+
+    }
+    public void DoMemoryTest() throws InterruptedException {
+
 //        waitForElementToAppear(new By.ByCssSelector("div[class='css-hvbk5q eut2yre0'] div[class*='active']"));
         int i = 0;
         while(i < 150){
@@ -87,11 +91,5 @@ public class MemoryTestPage extends AbstractComponent {
         driver.findElement(By.cssSelector("button[class='css-qm6rs9 e19owgy710']")).click();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        MemoryTestPage memoryTestPage = new MemoryTestPage(driver);
-        memoryTestPage.goTo();
-        memoryTestPage.DoMemoryTest();
-    }
 }
 

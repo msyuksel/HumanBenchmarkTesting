@@ -71,32 +71,29 @@ public class SequenceMemoryPage extends AbstractComponent {
     }
 
     public void testRunner() throws InterruptedException {
-        List<Integer> btnClickIndexs = indexesOfActiveSquares();
-        for(int i = 0; i<scoreIs; i++) {
-            try {waitForWebElementToBeClickable(squareBtns.get(i));} catch(Exception e){}
-            clickBoxes(btnClickIndexs , i);
+        for(int j = 0; j <100; j++){
+            List<Integer> btnClickIndexs = indexesOfActiveSquares();
+            for(int i = 0; i<scoreIs; i++) {
+                try {waitForWebElementToBeClickable(squareBtns.get(i));} catch(Exception e){}
+                clickBoxes(btnClickIndexs , i);
+            }
+            System.out.println("Level is: "+scoreIs);
+            System.out.println("Click List Size: "+btnClickIndexs.size());
+            //try {waitForWebElementToAppear(activeSquareBtn);} catch (Exception e){}
+            scoreIs++;
         }
-        System.out.println("Level is: "+scoreIs);
-        System.out.println("Click List Size: "+btnClickIndexs.size());
-        //try {waitForWebElementToAppear(activeSquareBtn);} catch (Exception e){}
-        scoreIs++;
     }
+
 
     public void goTo() {
         driver.get("https://humanbenchmark.com/tests/sequence");
     }
-
-    public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-
-        SequenceMemoryPage sequenceMemoryPage = new SequenceMemoryPage(driver);
-        sequenceMemoryPage.goTo();
-        sequenceMemoryPage.sequenceMemoryStartTestBtn.click();
-        for(int i = 0; i <100; i++){
-            sequenceMemoryPage.testRunner();
-        }
-//        System.out.println("The size of getClickIndex is: " + sequenceMemoryPage.indexesOfActiveSquares().size());
-//        System.out.println("Score is "+sequenceMemoryPage.playerScore.getText());
-        driver.close();
+    public void saveScore() throws InterruptedException {
+        saveScoreBtn.click();
     }
+    public void startTest(){
+        sequenceMemoryStartTestBtn.click();
+    }
+
+
 }

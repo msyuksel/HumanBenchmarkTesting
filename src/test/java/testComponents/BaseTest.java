@@ -10,22 +10,23 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
+import io.cucumber.java.Before;
+import io.cucumber.java.After;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pageobjects.LandingPage;
+import pageobjects.LoginPage;
 
 public class BaseTest {
 	public WebDriver driver;
@@ -106,8 +107,23 @@ public class BaseTest {
 
 	}
 
-	@BeforeMethod(alwaysRun = true)
-	public LandingPage launchApplication() throws IOException {
+//	@BeforeMethod(alwaysRun = true)
+	public LandingPage launchApplication(String username,String password) throws IOException, InterruptedException {
+
+		driver = initializeDriver();
+		driver.get("https://www.humanbenchmark.com/login");
+		Thread.sleep(2000);
+		driver.findElement(By.cssSelector("input[type='text']")).sendKeys(username);
+		driver.findElement(By.cssSelector("input[type='password']")).sendKeys(password);
+		driver.findElement(By.cssSelector("input[type='submit']")).click();
+		Thread.sleep(2000);
+
+		landingPage = new LandingPage(driver);
+		landingPage.goTo();
+		return landingPage;
+
+	}
+	public LandingPage launchApplication() throws IOException, InterruptedException {
 
 		driver = initializeDriver();
 		landingPage = new LandingPage(driver);
@@ -116,7 +132,7 @@ public class BaseTest {
 
 	}
 
-	@AfterMethod(alwaysRun = true)
+//	@AfterMethod(alwaysRun = true)
 	public void tearDown() {
 		driver.close();
 	}

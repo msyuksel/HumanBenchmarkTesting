@@ -52,15 +52,11 @@ public class TypingTestPage {
 		selectTextBox();
 		BoxToTypeIn.sendKeys(str);
 	}
-	public void SaveScore() {
+	public void saveScore() {
 		driver.findElement(By.cssSelector("button[class='css-qm6rs9 e19owgy710']")).click();
 	}
-	public static void main(String[] args) throws InterruptedException {
-		WebDriver driver = new ChromeDriver();
-		TypingTestPage typingTestPage = new TypingTestPage(driver);
-		typingTestPage.goTo();
-		typingTestPage.sendCorrectKeys();
-	}
+
+
 
 
 }

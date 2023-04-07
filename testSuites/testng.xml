@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Sigma/Documents/SeleniumFrameworks/HumanBenchmarkTesting/src/test/java/cucumber/ChimpTestTestNGRunner.java">
         <classes>
-            <class name="cucumber.ChimpTestTestNGRunner"/>
+            <class name="cucumber.RegresionTestTestNGRunner"/>
         </classes>
     </test>
 </suite>

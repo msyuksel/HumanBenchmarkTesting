@@ -1,13 +1,18 @@
 package stepDefinitions;
 
+import data.DataReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageobjects.LandingPage;
+import pageobjects.LoginPage;
 import testComponents.BaseTest;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import pageobjects.ChimpTestPage;
 
 
@@ -15,11 +20,13 @@ public class ChimpTestDefinitions extends BaseTest {
 
 	public LandingPage landingPage;
 	public ChimpTestPage chimpTestPage;
-
+	public LoginPage loginPage;
 	@Given("I landed on ChimpTestPage")
-	public void i_landed_on_chimp_test_page() throws IOException{
+	public void i_landed_on_chimp_test_page() throws IOException, InterruptedException {
 		// Write code here that turns the phrase above into concrete action
-		landingPage= launchApplication();
+		DataReader dataReader = new DataReader();
+		ArrayList<HashMap<String,String>> data = (ArrayList<HashMap<String, String>>) dataReader.getJsonDataToMap();
+		landingPage= launchApplication(data.get(0).get("username"), data.get(0).get("password"));
 
 		chimpTestPage = landingPage.goToChimpTest();
 

@@ -25,6 +25,36 @@ public class ReactionTimePage {
     @FindBy(css = "button[class=\"css-qm6rs9 e19owgy710\"]")
     WebElement saveScoreBtn;
 
+    @FindBy(css = "div[class=\"css-42wpoy e19owgy79\"]")
+    WebElement continueBtn;
+
+    public void startTest() {
+        reactionTimeStartTestBtn.click();
+    }
+
+    public void clickReactionTimeBtn() {
+        Boolean ThereAreTriesRemaining = true;
+        int tries = 5;
+        while (ThereAreTriesRemaining) {
+            reactionTimeClickBtn.click();
+            tries--;
+            ThereAreTriesRemaining = (tries != 0);
+            if (!ThereAreTriesRemaining){
+                break;
+            }
+            continueBtn.click();
+
+
+
+
+
+    }}
+
+    public void saveScore() {
+        saveScoreBtn.click();
+    }
+
+
     public void goTo() {
         driver.get("https://humanbenchmark.com/tests/reactiontime");
     }

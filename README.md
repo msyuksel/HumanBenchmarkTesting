@@ -6,6 +6,8 @@ This repository contains an automated testing framework for completing all the c
 - Automates Human Benchmark challenges
 - Comprehensive test coverage for each challenge
 - Modular design for easy maintenance and extensibility
+### Most Recent Results
+![alt text](https://github.com/msyuksel/HumanBenchmarkTesting/blob/main/image.png)
 
 ## Technologies
 - Java

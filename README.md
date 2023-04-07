@@ -39,13 +39,13 @@ mvn clean install
 
 The following tasks are in progress or remaining:
 
- -Add Verbal Memory Page Object
- -Add Verbal Memory TestNg runner and .feature files
- -Add Verbal Memory tests Step Definitions
- -Convert Aim Test, Memory Test, Sequence Memory, and Typing test pages main method tests to cucumber testng tests.
- -Make test for reaction time
- -Make the regression test open in sequence on the same tab rather than opening a new browser each time.
- -Fix Number memory test.
- -Configure tests run from testng xml and through Jenkins rather than just TestNG runner
+- Add Verbal Memory Page Object
+- Add Verbal Memory TestNg runner and .feature files
+- Add Verbal Memory tests Step Definitions
+- Convert Aim Test, Memory Test, Sequence Memory, and Typing test pages main method tests to cucumber testng tests.
+- Make test for reaction time
+- Make the regression test open in sequence on the same tab rather than opening a new browser each time.
+- Fix Number memory test.
+- Configure tests run from testng xml and through Jenkins rather than just TestNG runner
 ## Contributing
 Feel free to contribute to the project by submitting pull requests or opening issues for any bugs or feature requests. Please follow the standard code of conduct and best practices for contributing to open-source projects.
